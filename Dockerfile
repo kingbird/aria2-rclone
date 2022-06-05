@@ -1,6 +1,7 @@
 FROM alpine
 
 # ADD caddy/  /home/caddy/
+RUN git clone https://github.com/kingbird/aria2-rclone.git
 ADD conf/  /root/
 ADD aria2  /etc/init.d/
 ADD bin/  /usr/bin/
