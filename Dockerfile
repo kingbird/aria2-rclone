@@ -1,10 +1,5 @@
 FROM alpine
-
-# ADD caddy/  /home/caddy/
-RUN apk update \
-    && apk add git
-ENV WORK_DIR /home
-WORKDIR $WORK_DIR
+RUN apk update && apk add git
 RUN git clone https://github.com/kingbird/aria2-rclone.git
 RUN cd aria2-rclone \
     && cp -rp ./conf/*  /root/ \
@@ -18,6 +13,6 @@ RUN cd aria2-rclone \
     && chmod +x /usr/bin/aria2c /usr/bin/rclone /usr/bin/filebrowser /etc/init.d/aria2 /entrypoint.sh /root/.config/rclone/up.sh
 ENV rpc jaz
 
-EXPOSE 51413 6800
+EXPOSE 51413 6800 80
 
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]
